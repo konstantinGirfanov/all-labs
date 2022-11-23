@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hello
+﻿namespace Hello
 {
     class Program
     {
