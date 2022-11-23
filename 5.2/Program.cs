@@ -6,40 +6,37 @@ namespace Hello
     {
         public static bool IsCorrectInput(string userInput)
         {
-            int countMinus = 0;
-            int countComma = 0;
-
-            while (true)
+            if (userInput.Length > 0 && (userInput[0] == '-' || char.IsDigit(userInput[0])))
             {
-                for (int i = 0; i < userInput.Length; i++)
+                for (int i = 1; i < userInput.Length; i++)
                 {
-                    if ((char.IsDigit(userInput[i]) || userInput[i] == '-'))
+                    if (char.IsDigit(userInput[i]))
                     {
-                        if (userInput[i] == '-')
-                        {
-                            countMinus++;
-                            if (countMinus == 2)
-                                return false;
-                        }
                         continue;
                     }
                     else
+                    {
                         return false;
+                    }
                 }
 
                 return true;
             }
+            else
+            {
+                return false;
+            }
         }
 
-        public static string SumDigits(string a)
+        public static string SumDigits(string userInput)
         {
-            var b = Math.Abs(int.Parse(a));
+            int number = Math.Abs(int.Parse(userInput));
             int sum = 0;
 
-            while (b > 0)
+            while (number > 0)
             {
-                sum += b % 10;
-                b /= 10;
+                sum += number % 10;
+                number /= 10;
             }
 
             return sum.ToString();
