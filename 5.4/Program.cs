@@ -1,21 +1,35 @@
 ﻿using System;
+using System.Numerics;
 
 namespace HelloWorld
 {
     class Programm
     {
-        public static double Factorial(double num)
+        public static int Factorial(int number)
         {
-            double factorial = 1;
-            if (num == 0)
-                factorial = 1;
-            else
-            {
-                for (int i = 1; i <= num; i++)
-                    factorial *= i;
-            }
+            int factorial = 1;
+            for (int i = 1; i <= number; i++)
+                factorial *= i;
 
             return factorial;
+        }
+
+        public static int IntNumbersProcessing(int number)
+        {
+            if (number >= 0)
+                return Factorial(number);
+            else
+                return number;
+        }
+
+        public static string DoubleNumbersProcessing(double number)
+        {
+            string fract = Math.Abs(Math.Round(number % 1, 2)).ToString();
+
+            if (fract[2] == 0)
+                return fract[3..];
+            else
+                return fract[2..];
         }
 
         public static void WriteDifferenceArray(double[] firstArr, double[] secondArr)
@@ -41,25 +55,22 @@ namespace HelloWorld
 
             for (int i = 0; i < arrSize; i++)
             {
-                Console.Write("Элемент массива номер " + i.ToString() + ": ");
+                Console.Write("Элемент массива номер " + i + ": ");
                 firstArray[i] = double.Parse(Console.ReadLine());
             }
 
             for (int i = 0; i < arrSize; i++)
             {
-                if (firstArray[i] > 0 && firstArray[i] % 1 == 0)
+                if (int.TryParse(firstArray[i].ToString(), out _))
                 {
-                    changedArray[i] = Factorial(firstArray[i]);
+                    changedArray[i] = IntNumbersProcessing((int)firstArray[i]);
                 }
-                else if (firstArray[i] % 1 != 0)
+                else
                 {
-                    changedArray[i] = Math.Round(firstArray[i] % 1, 2);
-                }
-                else if (changedArray[i] <= 0)
-                {
-                    changedArray[i] = firstArray[i];
+                    changedArray[i] = int.Parse(DoubleNumbersProcessing((double)firstArray[i]));
                 }
             }
+
             WriteDifferenceArray(firstArray, changedArray);
         }
     }
