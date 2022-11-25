@@ -25,10 +25,9 @@ namespace Hello
             string pattern = @"^(-|\d)(\d*)$";
 
             if (Regex.IsMatch(userInput, pattern))
-            {
                 Console.Write(SumDigits(userInput));
-            }
-            else Console.WriteLine("Неверный формат числа.");
+            else
+                Console.WriteLine("Неверный формат числа.");
         }
     }
 }
