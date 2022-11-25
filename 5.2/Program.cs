@@ -22,7 +22,7 @@ namespace Hello
         public static void Main()
         {
             var userInput = Console.ReadLine();
-            string pattern = @"({-}|\d)+(\d*)";
+            string pattern = @"^(-|\d)(\d*)$";
 
             if (Regex.IsMatch(userInput, pattern))
             {
