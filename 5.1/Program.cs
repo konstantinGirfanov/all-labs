@@ -6,9 +6,9 @@ namespace Hello
     {
         public static void Main()
         {
-            float previousNum = -1f;
-            float currentNum = 0f;
             bool isFirstInput = true;
+            float previousNum = 0f;
+            float currentNum = 0f;
 
             while (true)
             {
@@ -18,19 +18,30 @@ namespace Hello
                 if (isFirstInput)
                 {
                     isFirstInput = false;
+                    float.TryParse(userInput, out currentNum);
+                    previousNum = currentNum - 1;
                 }
                 else
                 {
-                    previousNum = currentNum;
+                    if(float.TryParse(userInput, out _))
+                    {
+                        previousNum = currentNum;
+                        currentNum = float.Parse(userInput);
+                    }
                 }
-                currentNum = float.Parse(userInput);
 
                 if (int.TryParse(userInput, out int b))
                 {
                     Console.WriteLine(b.ToString());
                 }
-
-                if (Math.Abs(previousNum - currentNum) < 1e-9 || userInput == "q") break;
+                
+                if (!int.TryParse(userInput, out _) || userInput == "q")
+                {
+                    if (Math.Abs(previousNum - currentNum) < 1e-9 || userInput == "q")
+                    {
+                        break;
+                    }
+                }
             }
         }
     }
