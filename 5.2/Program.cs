@@ -12,7 +12,7 @@ namespace Hello
             {
                 for (int i = 1; i < userInput.Length; i++)
                 {
-                    sum += userInput[i];
+                    sum += userInput[i] - 48;
                 }
             }
             else
