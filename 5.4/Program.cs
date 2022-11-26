@@ -14,7 +14,7 @@ namespace HelloWorld
             return factorial;
         }
 
-        public static int IntNumbersProcessing(int number)
+        public static int ProcessInt(int number)
         {
             if (number >= 0)
                 return Factorial(number);
@@ -22,17 +22,17 @@ namespace HelloWorld
                 return number;
         }
 
-        public static string DoubleNumbersProcessing(double number)
+        public static double ProcessDouble(double number)
         {
             string fract = Math.Abs(Math.Round(number % 1, 2)).ToString();
 
             if (fract[2] == 0)
-                return fract[3..];
+                return double.Parse(fract[3..]);
             else
-                return fract[2..];
+                return double.Parse(fract[2..]);
         }
 
-        public static void WriteDifferenceArray(double[] firstArr, double[] secondArr)
+        public static void WriteDifferentArrays(double[] firstArr, double[] secondArr)
         {
             Console.Write("Начальный массив: ");
             foreach (var x in firstArr)
@@ -63,15 +63,15 @@ namespace HelloWorld
             {
                 if (int.TryParse(firstArray[i].ToString(), out _))
                 {
-                    changedArray[i] = IntNumbersProcessing((int)firstArray[i]);
+                    changedArray[i] = ProcessInt((int)firstArray[i]);
                 }
                 else
                 {
-                    changedArray[i] = int.Parse(DoubleNumbersProcessing((double)firstArray[i]));
+                    changedArray[i] = ProcessDouble(firstArray[i]);
                 }
             }
 
-            WriteDifferenceArray(firstArray, changedArray);
+            WriteDifferentArrays(firstArray, changedArray);
         }
     }
 }
