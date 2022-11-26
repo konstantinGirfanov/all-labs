@@ -58,7 +58,7 @@ namespace HelloWorld
                 Console.Write("Элемент массива номер " + i + ": ");
                 string userInput = (Console.ReadLine());
 
-                if (userInput.Contains(','))
+                if (userInput.Contains("."))
                 {
                     firstArray[i] = double.Parse(userInput);
                     changedArray[i] = ProcessDouble(firstArray[i]);
