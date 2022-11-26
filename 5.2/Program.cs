@@ -6,14 +6,30 @@ namespace Hello
     {
         public static string SumDigits(string userInput)
         {
-            int number = Math.Abs(int.Parse(userInput));
             int sum = 0;
 
-            while (number > 0)
+            if (userInput[0] == '-')
+            {
+                for (int i = 1; i < userInput.Length; i++)
+                {
+                    sum += userInput[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < userInput.Length; i++)
+                {
+                    sum += userInput[i] - 48;
+                }
+            }
+
+
+
+            /*while (number > 0)
             {
                 sum += number % 10;
                 number /= 10;
-            }
+            }*/
 
             return sum.ToString();
         }
