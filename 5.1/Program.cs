@@ -18,9 +18,15 @@ namespace Hello
                     Console.WriteLine((char)int.Parse(userInput));
                     number = resultInt;
                 }
-                else if (float.TryParse(userInput, out float resultFloat) || userInput == "q")
+
+                else if (userInput == "q")
                 {
-                    if (userInput == "q" || Math.Abs(resultFloat - number) <  1e-9)
+                    break;
+                }
+
+                else if(float.TryParse(userInput, out float resultFloat))
+                {
+                    if (Math.Abs(resultFloat - number) < 1e-9)
                     {
                         break;
                     }
