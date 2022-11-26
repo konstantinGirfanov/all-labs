@@ -6,16 +6,33 @@ namespace Hello
     {
         public static void Main()
         {
-            bool isFirstInput = true;
-            float previousNum = 0f;
-            float currentNum = 0f;
+            float number = float.NaN;
 
             while (true)
             {
                 Console.Write("Введите число: ");
-                var userInput = Console.ReadLine();
+                string userInput = Console.ReadLine();
 
-                if (isFirstInput)
+                if (int.TryParse(userInput, out _))
+                {
+                    Console.WriteLine((char)int.Parse(userInput));
+                    number = float.Parse(userInput);
+                }
+                else if (float.TryParse(userInput, out _) || userInput == "q")
+                {
+                    if (userInput == "q" || Math.Abs(float.Parse(userInput) - number) <  1e-9)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        number = float.Parse(userInput);
+                    }
+                }
+
+
+
+                /*if (isFirstInput)
                 {
                     isFirstInput = false;
                     float.TryParse(userInput, out currentNum);
@@ -41,7 +58,7 @@ namespace Hello
                     {
                         break;
                     }
-                }
+                }*/
             }
         }
     }
