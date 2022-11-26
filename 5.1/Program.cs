@@ -13,14 +13,20 @@ namespace Hello
                 Console.Write("Введите число: ");
                 string userInput = Console.ReadLine();
 
-                if (int.TryParse(userInput, out _))
+                if (int.TryParse(userInput, out int resultInt))
                 {
                     Console.WriteLine((char)int.Parse(userInput));
-                    number = float.Parse(userInput);
+                    number = resultInt;
                 }
-                else if (float.TryParse(userInput, out _) || userInput == "q")
+
+                else if (userInput == "q")
                 {
-                    if (userInput == "q" || Math.Abs(float.Parse(userInput) - number) <  1e-9)
+                    break;
+                }
+
+                else if(float.TryParse(userInput, out float resultFloat))
+                {
+                    if (Math.Abs(resultFloat - number) < 1e-9)
                     {
                         break;
                     }
