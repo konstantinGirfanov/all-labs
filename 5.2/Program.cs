@@ -1,33 +1,9 @@
-﻿using System;
+﻿using System.Text.RegularExpressions;
 
 namespace Hello
 {
     class Program
     {
-        public static bool IsCorrectInput(string userInput)
-        {
-            if (userInput.Length > 0 && (userInput[0] == '-' || char.IsDigit(userInput[0])))
-            {
-                for (int i = 1; i < userInput.Length; i++)
-                {
-                    if (char.IsDigit(userInput[i]))
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public static string SumDigits(string userInput)
         {
             int number = Math.Abs(int.Parse(userInput));
@@ -45,12 +21,12 @@ namespace Hello
         public static void Main()
         {
             var userInput = Console.ReadLine();
+            string pattern = @"^(-|\d)(\d*)$";
 
-            if (IsCorrectInput(userInput))
-            {
+            if (Regex.IsMatch(userInput, pattern))
                 Console.Write(SumDigits(userInput));
-            }
-            else Console.WriteLine("Неверный формат числа.");
+            else
+                Console.WriteLine("Неверный формат числа.");
         }
     }
 }
