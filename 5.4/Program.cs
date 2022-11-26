@@ -56,18 +56,18 @@ namespace HelloWorld
             for (int i = 0; i < arrSize; i++)
             {
                 Console.Write("Элемент массива номер " + i + ": ");
-                firstArray[i] = double.Parse(Console.ReadLine());
-            }
+                string userInput = (Console.ReadLine());
 
-            for (int i = 0; i < arrSize; i++)
-            {
-                if (int.TryParse(firstArray[i].ToString(), out _))
+                if (userInput.Contains(','))
                 {
-                    changedArray[i] = ProcessInt((int)firstArray[i]);
+                    firstArray[i] = double.Parse(userInput);
+                    changedArray[i] = ProcessDouble(firstArray[i]);
                 }
+
                 else
                 {
-                    changedArray[i] = ProcessDouble(firstArray[i]);
+                    firstArray[i] = int.Parse(userInput);
+                    changedArray[i] = ProcessInt((int)firstArray[i]);
                 }
             }
 
